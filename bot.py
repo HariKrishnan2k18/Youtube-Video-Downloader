@@ -12,7 +12,7 @@ app = Client(
     "my_bot",
     api_id='19340501', 
     api_hash='7dd7b1984a85c0258c87c17cfac1542b', 
-    bot_token='7624800788:AAE0raDqJZMX5KPDAsmjN2uDTZb4sNadbhk',
+    bot_token='7624800788:AAHQmwhSKhPI5Tz49bvMY_Hr6t5boUIg2j0',
     plugins=dict(root="Youtube")
 )
 
