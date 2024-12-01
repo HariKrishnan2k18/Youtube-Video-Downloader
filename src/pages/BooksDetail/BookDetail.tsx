@@ -12,10 +12,11 @@ function BookDetail() {
   const Book = books.find((e: { id: number }) => e.id === Number(id));
   const { token, user } = useSelector((s: any) => s.token);
   const dispatch = useDispatch();
+  const API_URL = String(import.meta.env.VITE_API_URL);
   const handleCart = () => {
     dispatch(StoreCart(String(Book.id)));
     axios.post(
-      `http://localhost:8000/books/cart`,
+      `${API_URL}/books/cart`,
       {
         username: user.user,
         bookId: Book.id.toString()

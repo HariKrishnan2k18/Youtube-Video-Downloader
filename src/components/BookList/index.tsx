@@ -17,10 +17,11 @@ export default function BookList({ booksList, setBooksList }: any) {
   const { token, user } = useSelector((s: any) => s.token);
   const [bookType, setBookType] = useState("All Books");
   const dispatch = useDispatch();
+  const API_URL = String(import.meta.env.VITE_API_URL);
   const handleCart = (book: { id: string }) => {
     dispatch(StoreCart(String(book.id)));
     axios.post(
-      `http://localhost:8000/books/cart`,
+      `${API_URL}/books/cart`,
       {
         username: user.user,
         bookId: book.id.toString()
@@ -41,7 +42,6 @@ export default function BookList({ booksList, setBooksList }: any) {
         : booksArray.filter((e: { genre: string }) => e.genre.includes(value))
     );
   };
-  console.log({ booksList });
   return (
     <>
       <h2 style={{ textAlign: "left", marginLeft: "200px" }}>

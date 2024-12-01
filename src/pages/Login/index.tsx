@@ -43,12 +43,13 @@ const Login = () => {
     setErrors(newErrors);
     return valid;
   };
+  const API_URL = String(import.meta.env.VITE_API_URL);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (validateForm()) {
       const formData = new FormData(event.target as HTMLFormElement);
-      await fetch("http://localhost:8000/login", {
+      await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

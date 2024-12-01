@@ -18,6 +18,7 @@ function AdminPage({ setBooksList }: any) {
   const { token } = useSelector((s: any) => s.token);
   const formRef = useRef<HTMLFormElement | null>(null);
   const { books: booksArray } = useSelector((s: any) => s.books);
+  const API_URL = String(import.meta.env.VITE_API_URL);
   const handleSubmit = (event: any) => {
     const data = new FormData(event.target);
     const formObj = Object.fromEntries(
@@ -26,7 +27,7 @@ function AdminPage({ setBooksList }: any) {
       })
     );
     axios
-      .post(`http://localhost:8000/books/addbook`, formObj, {
+      .post(`${API_URL}/books/addbook`, formObj, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json"

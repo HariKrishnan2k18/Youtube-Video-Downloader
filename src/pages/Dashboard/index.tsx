@@ -19,10 +19,11 @@ function Dashboard() {
   const dispatch = useDispatch();
   const [booksList, setBooksList] = useState([]);
   const [page, setPage] = useState("Home");
+  const API_URL = String(import.meta.env.VITE_API_URL);
   useEffect(() => {
     if (token) {
       axios
-        .get("http://localhost:8000/books", {
+        .get(`${API_URL}/books`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json"
