@@ -44,9 +44,7 @@ export default function BookList({ booksList, setBooksList }: any) {
   };
   return (
     <>
-      <h2 style={{ textAlign: "left", marginLeft: "200px" }}>
-        Product Overview
-      </h2>
+      <h2>Product Overview</h2>
       <BookType>
         {genre.map((e) => (
           <div

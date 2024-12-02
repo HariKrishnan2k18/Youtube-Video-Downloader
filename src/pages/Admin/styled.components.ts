@@ -24,11 +24,10 @@ export const Label = styled.label`
 export const InputBox = styled.input`
   flex-grow: 1;
   padding: 5px;
-  width: 500px;
+  width: 10%;
 `;
 
 export const InputArea = styled.textarea`
-  width: 500px;
   height: 50px;
 `;
 
