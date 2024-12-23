@@ -1,14 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Rating } from "react-simple-star-rating";
+// import { Rating } from "react-simple-star-rating";
 import { useDispatch } from "react-redux";
 import { StoreCart } from "../../data/reducers/booksList";
 import axios from "axios";
+import Rating from "@mui/material/Rating";
 
 function BookDetail() {
   const { id } = useParams();
   const { books, cart } = useSelector((s: any) => s.books);
+
   const Book = books.find((e: { id: number }) => e.id === Number(id));
   const { token, user } = useSelector((s: any) => s.token);
   const dispatch = useDispatch();
@@ -29,7 +31,6 @@ function BookDetail() {
       }
     );
   };
-  console.log(cart.map(Number), cart.map(Number).includes(3), Book.id);
   return (
     <div>
       <div>
@@ -56,8 +57,13 @@ function BookDetail() {
             <h2>{Book.title}</h2>
             <h3># {Book.availability}</h3>
             <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-              <span>{Book.rating}</span>{" "}
-              <Rating initialValue={Book.rating} readonly size={20} />
+              <span>{Book.rating}</span>
+              <Rating
+                name="half-rating"
+                defaultValue={Book.rating}
+                precision={0.1}
+                readOnly
+              />
             </div>
             <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
               <b>RS. {Book.price}</b>

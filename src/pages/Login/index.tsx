@@ -1,8 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
   ForgotPassword,
@@ -12,8 +9,8 @@ import {
   Password,
   Username
 } from "./styled.components";
-import { setToken } from "../../data/reducers/loginReducer";
-import { CartsStore } from "../../data/reducers/booksList";
+import { setLoading } from "../../data/reducers/loginReducer";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -21,8 +18,7 @@ const Login = () => {
   const [errors, setErrors] = useState({ username: "", password: "" });
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [token, setTokenID] = useState<any>(null);
-
+  const { token } = useSelector((s: { token: { token: string } }) => s.token);
   const validateForm = () => {
     let valid = true;
     const newErrors = { username: "", password: "" };
@@ -43,32 +39,25 @@ const Login = () => {
     setErrors(newErrors);
     return valid;
   };
-  const API_URL = String(import.meta.env.VITE_API_URL);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (validateForm()) {
       const formData = new FormData(event.target as HTMLFormElement);
-      await fetch(`${API_URL}/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          username: formData.get("username"),
-          password: formData.get("password")
+      console.log(formData.get("username"));
+      dispatch(
+        setLoading({
+          username: formData.get("username") as string,
+          password: formData.get("password") as string
         })
-      })
-        .then((res) => res.json())
-        .then((res) => setTokenID(res));
+      );
     }
   };
   useEffect(() => {
     if (token) {
-      dispatch(setToken(token));
-      dispatch(CartsStore(token.user.books.cart));
       navigate("/dashboard");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   return (

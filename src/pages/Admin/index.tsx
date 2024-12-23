@@ -4,7 +4,7 @@ import {
   FormBox,
   InputArea,
   InputBox,
-  InputField,
+  // InputField,
   InputForm,
   Label
 } from "./styled.components";
@@ -54,8 +54,8 @@ function AdminPage({ setBooksList }: any) {
             handleSubmit(event);
           }}
         >
-          {inputField.map((e, index) => (
-            <InputField key={index}>
+          {inputField.map((e) => (
+            <>
               <Label>{e.label}</Label>
               {e.label === "Description" ? (
                 <InputArea name={e.name} placeholder={e.label} required />
@@ -67,10 +67,18 @@ function AdminPage({ setBooksList }: any) {
                   required
                 />
               )}
-            </InputField>
+            </>
           ))}
 
-          <button type="submit" style={{ background: "blue", color: "white" }}>
+          <button
+            type="submit"
+            style={{
+              background: "blue",
+              color: "white",
+              gridColumn: "span 2",
+              width: "100%"
+            }}
+          >
             Submit
           </button>
         </InputForm>

@@ -1,20 +1,32 @@
-import { createSlice } from "@reduxjs/toolkit";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { LoginPayload } from "../../Interface";
 
 const initialState = {
-  token: null
+  loading: false,
+  token: null,
+  user: {},
+  error: ""
 };
 
 const loginSlice = createSlice({
   name: "token",
   initialState,
   reducers: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    setToken: (state: any, action) => {
+    setLoading: (state, action: PayloadAction<LoginPayload>) => {
+      state.loading = true;
+    },
+    setToken: (state, action) => {
+      state.loading = false;
       state.token = action.payload?.token;
       state.user = action.payload?.user;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
     }
   }
 });
 
-export const { setToken } = loginSlice.actions;
+export const { setLoading, setToken, setError } = loginSlice.actions;
 export default loginSlice.reducer;

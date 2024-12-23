@@ -8,23 +8,24 @@ export const InputField = styled.div`
 `;
 
 export const InputForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
+  @media (max-width: 600px) {
+    grid-template-columns: 30%;
+  }
 `;
 
 export const Label = styled.label`
-  flex-basis: 30%;
   text-align: right;
   margin-right: 10px;
-  width: 100px;
+  white-space: nowrap;
 `;
 
 export const InputBox = styled.input`
   flex-grow: 1;
   padding: 5px;
-  width: 10%;
+  width: 200px;
 `;
 
 export const InputArea = styled.textarea`
