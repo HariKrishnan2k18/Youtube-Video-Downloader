@@ -64,30 +64,26 @@ const Login = () => {
     <Container>
       <LoginForm onSubmit={handleSubmit}>
         <h3 style={{ color: "#8C55AA" }}> Sign In</h3>
-        <div>
-          <Username
-            type="text"
-            value={username}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setUsername(e.target.value)
-            }
-            placeholder="Username"
-            name="username"
-          />
-          {errors.username && <InlineError>{errors.username}</InlineError>}
-        </div>
-        <div>
-          <Password
-            type="password"
-            value={password}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setPassword(e.target.value)
-            }
-            placeholder="Password"
-            name="password"
-          />
-          {errors.password && <InlineError>{errors.password}</InlineError>}
-        </div>
+        <Username
+          type="text"
+          value={username}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setUsername(e.target.value)
+          }
+          placeholder="Username"
+          name="username"
+        />
+        {errors.username && <InlineError>{errors.username}</InlineError>}
+        <Password
+          type="password"
+          value={password}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setPassword(e.target.value)
+          }
+          placeholder="Password"
+          name="password"
+        />
+        {errors.password && <InlineError>{errors.password}</InlineError>}
         <LoginButton type="submit">Login</LoginButton>
         <ForgotPassword href="/#"> Forgot Password ?</ForgotPassword>
       </LoginForm>
