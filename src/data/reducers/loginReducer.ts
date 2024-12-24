@@ -13,7 +13,7 @@ const loginSlice = createSlice({
   name: "token",
   initialState,
   reducers: {
-    setLoading: (state, action: PayloadAction<LoginPayload>) => {
+    setLoading: (state, _action: PayloadAction<LoginPayload>) => {
       state.loading = true;
     },
     setToken: (state, action) => {
